@@ -1,4 +1,4 @@
-package com.wn.mapper;
+package com.wn.csd.mapper;
 
 /**
  * @author weining
