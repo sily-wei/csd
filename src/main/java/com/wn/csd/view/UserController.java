@@ -19,6 +19,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("/loginIn")
+    public String loginIn() {
+        System.out.println("123");
+        return "/pagehome/login";
+    }
+
+
     @RequestMapping("/login")
     public String login(User user, Model model) {
 

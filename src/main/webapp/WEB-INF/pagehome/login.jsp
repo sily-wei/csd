@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -129,9 +129,9 @@
         var form = layui.form;
 
         //监听提交
-        form.on('submit(formDemo)', function(dt){
+        form.on('submit(formDemo)', function(msg){
             $.ajax({
-                url:"/carsys/user/login.do",
+                url:"/user/login",
                 type:"post",
                 data:$("form").serialize(),
                 dataType:'json',
@@ -144,6 +144,7 @@
                     }
                 },
                 error:function(){
+                    alert(url);
                     layer.alert("ajax错误");
                 }
             });
