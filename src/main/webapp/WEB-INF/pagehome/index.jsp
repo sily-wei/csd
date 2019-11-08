@@ -1,14 +1,14 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>车速递租车首页</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../layui/css/layui.css"  media="all">
-    <link rel="stylesheet" href="../css/pagehome.index.css">
-    <script type="application/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script type="application/javascript" src="../js/bootstrap.min.js"></script>
-    <script type="application/javascript" src="../layui/layui.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/layui/css/layui.css"  media="all">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/pagehome.index.css">
+    <script type="application/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.3.1.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="${pageContext.request.contextPath}/resources/layui/layui.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 

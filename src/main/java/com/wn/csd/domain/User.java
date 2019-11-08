@@ -10,7 +10,7 @@ import lombok.Data;
 public class User {
     private Integer id;
     private String tel;
-    private String passsword;
+    private String password;
     private String email;
     private String invitation;
 }
