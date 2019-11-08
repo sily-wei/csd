@@ -58,6 +58,4 @@
         <mvc:jsp prefix="/WEB-INF" suffix=".jsp"/>
     </mvc:view-resolvers>
 
-
-
 </beans>
