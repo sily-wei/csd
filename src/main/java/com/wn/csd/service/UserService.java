@@ -15,4 +15,8 @@ public interface UserService {
      * @return 返回User对象
      */
     User findUserByTel(String tel);
+
+    void register(User user);
+
+    void updateUser(User user);
 }

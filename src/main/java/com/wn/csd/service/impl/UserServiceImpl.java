@@ -23,6 +23,15 @@ public class UserServiceImpl implements UserService {
      * @return 返回User对象
      */
     public User findUserByTel(String tel) {
+        System.out.println(tel);
         return userMapper.findUserByTel(tel);
+    }
+
+    public void register(User user) {
+        userMapper.register(user);
+    }
+
+    public void updateUser(User user) {
+        userMapper.updateUser(user);
     }
 }

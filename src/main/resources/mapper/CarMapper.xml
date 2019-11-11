@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wn.csd.mapper.CarMapper">
+    <resultMap id="carMap" type="car">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="sitnum" column="sitnum"/>
+        <result property="cid" column="cid"/>
+        <result property="price" column="price"/>
+        <result property="number" column="number"/>
+        <result property="picture" column="picture"/>
+    </resultMap>
+
+    <select id="selectCarByCId" resultMap="carMap">
+        SELECT SC.* FROM SYS_CAR SC WHERE SC.CID = #{CID} ORDER BY SC.PRICE
+    </select>
+
+    <select id="selectCarByNumber" resultMap="carMap">
+         SELECT SC.* FROM SYS_CAR SC WHERE SC.CID = #{CID} ORDER BY SC.NUMBER
+    </select>
+    <select id="selectCarById" resultType="com.wn.csd.domain.Car">
+         SELECT SC.* FROM SYS_CAR SC WHERE SC.ID = #{ID}
+    </select>
+
+</mapper>

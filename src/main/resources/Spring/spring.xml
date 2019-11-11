@@ -7,55 +7,72 @@
        xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-<!--加载本地文件-->
+    <!--加载本地的静态资源-->
     <context:property-placeholder location="classpath:properties/jdbc.properties"/>
 
-    <!--*****************spring的配置******************-->
+    <!--*****************spring的相关配置**************-->
     <!--扫描本地文件-->
     <context:component-scan base-package="com.wn"/>
 
-    <!--配置数据源-->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <!--准备数据源-->
+    <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
         <property name="driverClassName" value="${jdbc.driver}"/>
-        <property name="url" value="${jdbc.url}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
-    </bean>
 
-    <!--aop的注解-->
-    <aop:aspectj-autoproxy/>
+        <property name="maximumPoolSize" value="10"/>
+        <property name="minimumIdle" value="10"/>
+        <property name="maxLifetime" value="1800000"/>
+    </bean>
 
     <!--配置事务管理器-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!--配置事务启动器-->
+    <!--aop的注解-->
+    <aop:aspectj-autoproxy/>
+
+    <!--配置事务的注解驱动-->
     <tx:annotation-driven/>
 
-    <!--*******************myBatis的配置********************-->
-    <!--配置SqlSession-->
+    <!--***************Mybatis的相关配置*****************-->
+    <!--SqlSessionFactory工厂-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>
         <property name="typeAliasesPackage" value="com.wn.csd.domain"/>
     </bean>
 
-    <!--配置本地mapper扫描器-->
+    <!--设置mapper的扫描器-->
     <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.wn.**.mapper"/>
     </bean>
 
-    <!--*******************SpringMVC**************************-->
-    <!--配置注解释放器-->
-    <mvc:annotation-driven/>
+    <!--****************springMVC的相关配置*****************-->
+    <!--mvc的注解驱动-->
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="true">
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter" >
+                <property name = "supportedMediaTypes">
+                    <list>
+                        <value>application/json;charset=utf-8</value>
+                        <value>text/html;charset=utf-8</value>
+                        <!-- application 可以在任意 form 表单里面 enctype 属性默认找到 -->
+                        <value>application/x-www-form-urlencoded</value>
+                    </list>
+                </property>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" ></bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 
-    <!--配置mvc释放静态资源-->
+    <!--释放静态资源-->
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 
-    <!--配置前后缀-->
+    <!--配置视图解析器-->
     <mvc:view-resolvers>
         <mvc:jsp prefix="/WEB-INF" suffix=".jsp"/>
     </mvc:view-resolvers>
-
 </beans>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wn.csd.mapper.OrderMapper">
+    <resultMap id="orderMapper" type="order">
+        <id column="id" property="id"/>
+        <result column="cid" property="cid"/>
+        <result column="uid" property="uid"/>
+        <result column="getid" property="getId"/>
+        <result column="backid" property="backId"/>
+        <result column="oprice" property="oprice"/>
+        <result column="status" property="status"/>
+    </resultMap>
+    <insert id="addOrderById" parameterType="order">
+      INSERT INTO SYS_ORDER(cid,uid,getid,backid,oprice,status) VALUES (#{cid},#{uid},#{getId},#{backId},#{oprice},#{status})
+    </insert>
+</mapper>

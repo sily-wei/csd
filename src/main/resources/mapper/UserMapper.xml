@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wn.csd.mapper.UserMapper">
-    <resultMap id="userMap" type="com.wn.csd.domain.User">
+    <resultMap id="userMap" type="user">
         <id property="id" column="id"/>
         <result property="tel" column="tel"/>
         <result property="password" column="password"/>
@@ -11,23 +11,41 @@
     </resultMap>
 
     <sql id="selectUser">
-        SU.ID,SU.TEL,SU.PASSWORD,SU.EMAIL,SU.INVITATION
+        SU.ID, SU.TEL, SU.PASSWORD, SU.EMAIL, SU.INVITATION
     </sql>
 
-    <select id="findUserByTel" resultMap="userMap" parameterType="string">
+    <insert id="register">
+        INSERT INTO SYS_USER(TEL,PASSWORD,EMAIL,INVITATION) VALUES(#{tel},#{password},#{email},#{invitation})
+    </insert>
+
+    <update id="updateUser" parameterType="user">
+        UPDATE SYS_USER SU
+        <set>
+            <if test="tel != null">
+                SU.TEL = #{tel},
+            </if>
+            <if test="email != null">
+                SU.EMAIL = #{email},
+            </if>
+            <if test="password != null">
+                SU.PASSWORD = #{password}
+            </if>
+        </set>
+        WHERE SU.ID = #{id}
+    </update>
+
+    <select id="findUserByTel" resultMap="userMap">
         SELECT
         <include refid="selectUser"/>
-        FROM SYS_USER SU
-        <where>
-            <if test="tel!=null">
-                AND SU.TEL = #{tel}
+        FROM SYS_USER SU WHERE SU.TEL = #{tel}
+        <!--<where>
+            <if test="tel != null">
+                AND
             </if>
-            <if test="password!=null">
+            <if test="password != null">
                 AND SU.PASSWORD = #{password}
             </if>
-        </where>
+        </where>-->
     </select>
-
-
 
 </mapper>
