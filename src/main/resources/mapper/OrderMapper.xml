@@ -11,7 +11,44 @@
         <result column="oprice" property="oprice"/>
         <result column="status" property="status"/>
     </resultMap>
+
+    <resultMap id="userOrderMapper" type="userOrder">
+        <id property="id" column="id"/>
+        <result column="oprice" property="oprice"/>
+        <result column="gname" property="getcity"/>
+        <result column="bname" property="backcity"/>
+        <result column="cname" property="cname"/>
+        <result column="ostatus" property="ostatus"/>
+    </resultMap>
+
+    <sql id="pageSql">
+        #{startIndex},#{pageSize}
+    </sql>
+
     <insert id="addOrderById" parameterType="order">
       INSERT INTO SYS_ORDER(cid,uid,getid,backid,oprice,status) VALUES (#{cid},#{uid},#{getId},#{backId},#{oprice},#{status})
     </insert>
+
+    <select id="selectAllOrder" resultMap="userOrderMapper">
+        select
+            so.id,so.oprice,so.status as ostatus,sc.name as cname,c1.name as gname,c2.name as bname
+        from
+            sys_order so ,sys_car sc,sys_city c1,sys_city c2
+        where
+            so.cid = sc.id and
+            so.getid = c1.id and
+            so.backid = c2.id and
+            so.uid = #{uid}
+            limit
+            <include refid="pageSql"></include>
+    </select>
+
+    <select id="selectTotal" resultType="integer">
+        select
+            count(1)
+        from
+            sys_order so
+        where
+            so.uid = #{uid}
+    </select>
 </mapper>

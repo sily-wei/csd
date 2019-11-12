@@ -5,7 +5,6 @@ import com.wn.csd.service.CityService;
 import com.wn.csd.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -21,14 +20,6 @@ public class RentController {
 
     @Autowired
     private CityService cityService;
-
-    /**
-     * @return 跳转到shortrent页面
-     */
-    @RequestMapping("/short")
-    public String Short(Model model){
-        return "/shortRent/shortrent";
-    }
 
     @RequestMapping("/select")
     @ResponseBody

@@ -1,8 +1,8 @@
 package com.wn.csd.view;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -50,6 +50,14 @@ public class ViewController {
         return "/pagehome/register";
     }
 
+    /**
+     * @return 跳转到shortrent页面
+     */
+    @RequestMapping("/short")
+    public String Short(Model model){
+        return "/shortRent/shortrent";
+    }
+
     @RequestMapping("/car")
     public String car(){
         return "/shortRent/shortsort";
@@ -68,5 +76,10 @@ public class ViewController {
     @RequestMapping("/user")
     public String User(){
         return "/mymain/myinfo";
+    }
+
+    @RequestMapping("/about")
+    public String about(){
+        return "/pagehome/about";
     }
 }

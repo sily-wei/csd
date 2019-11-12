@@ -27,12 +27,12 @@
             </div>
             <div data-v-95ac8d30="" class="header3Nav right">|<a data-v-95ac8d30="" href="orderManage.html">我的订单</a>|<a
                     data-v-95ac8d30="" href="helpCenter.html">帮助中心</a>|<a data-v-95ac8d30=""
-                                                                          href="javascript:void">退出</a>
+                                                                          href="${pageContext.request.contextPath}/view/quit">退出</a>
             </div>
             <div data-v-95ac8d30="" class="header3User right">
                 <i data-v-95ac8d30="" class="iconfont icon-phone"></i>
                 <span data-v-95ac8d30="" class="sp1">400-919-8000</span>
-                <span data-v-95ac8d30="" class="sp2">欢迎您，</span>
+                <span data-v-95ac8d30="" class="sp2">欢迎您，${sessionScope.USERNAME}</span>
                 <span data-v-95ac8d30="" class="sp3"></span>
             </div>
         </div>
@@ -54,10 +54,10 @@
                         </dl>
                         <ul data-v-1cae2c34="" class="manNav">
                             <li data-v-1cae2c34="">
-                                <a data-v-1cae2c34="" href="mymain.html" class="">订单管理</a>
+                                <a data-v-1cae2c34="" href="${pageContext.request.contextPath}/view/myMain" class="">订单管理</a>
                             </li>
                             <li data-v-1cae2c34="">
-                                <a data-v-1cae2c34="" href="myinfo.html" class="sel">个人信息</a>
+                                <a data-v-1cae2c34="" href="${pageContext.request.contextPath}/view/user" class="sel">个人信息</a>
                             </li>
                         </ul>
                     </div>
@@ -100,7 +100,7 @@
     <div data-v-3aaf9db2="" class="footer2">
         <div data-v-3aaf9db2="" class="layout clear">
             <div data-v-3aaf9db2="" class="d1">
-                <a data-v-3aaf9db2="" href="about.html">关于车速递</a></div>
+                <a data-v-3aaf9db2="" href="${pageContext.request.contextPath}/view/about">关于车速递</a></div>
         </div>
     </div>
 
@@ -161,7 +161,7 @@
                         + '请输入修改后的邮箱：<br>' +
                         '<input type="text" name="email" id="email"><br/>'
                         + '请输入修改后的密码：<br>' +
-                        '<input type="text" name="password" id="password"><br/>'+
+                        '<input type="text" name="password" id="password"><br/>' +
                         '</form>' +
                         '</div>'
                     ,
@@ -177,9 +177,9 @@
                             type: "post",
                             data: $("form").serialize(),
                             dataType: 'json',
-                            success: function (data) {
-                                    alert("修改成功！");
-                                    window.location.href = ("${pageContext.request.contextPath}/view/myMain");
+                            success: function (msg) {
+                                alert("修改成功");
+                                window.location.href = ("${pageContext.request.contextPath}/view/quit");
                             },
                             error: function () {
                                 elert("ajax错误");
@@ -196,7 +196,6 @@
             var othis = $(this), method = othis.data('method');
             active[method] ? active[method].call(this, othis) : '';
         });
-
     });
 </script>
 

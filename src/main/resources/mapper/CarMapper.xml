@@ -20,6 +20,7 @@
     <select id="selectCarByNumber" resultMap="carMap">
          SELECT SC.* FROM SYS_CAR SC WHERE SC.CID = #{CID} ORDER BY SC.NUMBER
     </select>
+
     <select id="selectCarById" resultType="com.wn.csd.domain.Car">
          SELECT SC.* FROM SYS_CAR SC WHERE SC.ID = #{ID}
     </select>

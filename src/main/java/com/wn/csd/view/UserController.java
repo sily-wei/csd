@@ -1,6 +1,5 @@
 package com.wn.csd.view;
 
-import com.wn.csd.domain.Car;
 import com.wn.csd.domain.User;
 import com.wn.csd.service.CityService;
 import com.wn.csd.service.UserService;
@@ -32,9 +31,6 @@ public class UserController {
     @ResponseBody
     public String login(User user, HttpSession session) {
         User user2 = userService.findUserByTel(user.getTel());
-        System.out.println(user.getPassword());
-        System.out.println(user2.getPassword());
-        System.out.println(user2.getId());
 
         if (user.getPassword().equals(user2.getPassword())) {
             session.setAttribute("UID",user2.getId());
@@ -51,10 +47,6 @@ public class UserController {
     public Map<String,Object> loginTel(HttpSession session){
         Object username = session.getAttribute("USERNAME");
         User user = userService.findUserByTel((String) username);
-        System.out.println(user.getTel());
-        System.out.println(user.getEmail());
-        System.out.println(user.getPassword());
-
 
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("code",1);
@@ -65,7 +57,6 @@ public class UserController {
 
     @RequestMapping("/loginSuccess")
     public String loginSuccess(Model model) {
-
         return "/pagehome/loginsuccess";
     }
 
@@ -73,8 +64,6 @@ public class UserController {
     @ResponseBody
     public String registerUp(HttpSession session, User user) {
         String random = (String) session.getAttribute("R");
-        System.out.println(random);
-
         User tel = userService.findUserByTel(user.getTel());
         if (tel.getTel() == null) {
             if (random.equals(user.getInvitation())) {
@@ -100,7 +89,6 @@ public class UserController {
     @RequestMapping("/update")
     @ResponseBody
     public String update(User user,HttpSession session){
-        System.out.println(user.getTel()+user.getEmail());
         user.setId((Integer) session.getAttribute("UID"));
         userService.updateUser(user);
         return "1";

@@ -2,8 +2,11 @@ package com.wn.csd.view;
 
 import com.wn.csd.domain.Car;
 import com.wn.csd.domain.Order;
+import com.wn.csd.domain.OrderPage;
+import com.wn.csd.domain.UserOrder;
 import com.wn.csd.service.CarService;
 import com.wn.csd.service.OrderService;
+import com.wn.csd.utils.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -39,13 +44,34 @@ public class OrderController {
 
     @RequestMapping("/add")
     @ResponseBody
-    public String add(Order order, HttpSession session){
-        System.out.println(order.getCid()+"123"+order.getGetId()+"456"+order.getBackId()+"789"+order.getOprice());
+    public Map<String, Object> add(Order order, HttpSession session){
         order.setUid((Integer) session.getAttribute("UID"));
 
         orderService.addOrderById(order);
 
-        return "1";
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code",1);
+        return map;
     }
 
+    @RequestMapping("/all")
+    @ResponseBody
+    public String all(Integer page,HttpSession session){
+        Integer uid = (Integer) session.getAttribute("UID");
+        int total = orderService.selectTotal(uid);
+
+        OrderPage orderPage = new OrderPage();
+        orderPage.setPage(page);
+        orderPage.setPageSize(5);
+        orderPage.setStartIndex((orderPage.getPage()-1)*5);
+        orderPage.setUid(uid);
+
+        List<UserOrder> userOrders = orderService.selectAllOrder(orderPage);
+
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("code",1);
+        map.put("info",userOrders);
+        map.put("pages",total);
+        return JsonUtils.objectToJson(map);
+    }
 }

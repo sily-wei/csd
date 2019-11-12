@@ -75,7 +75,7 @@
                         <a data-v-39f7f629="" href="https://www.chesudi.com/module/longRent.html" target="_blank" class="">企业长租</a>
                     </li>
                     <li data-v-39f7f629="">
-                        <a data-v-39f7f629="" href="${pageContext.request.contextPath}/rent/short" target="_self" class="">短租自驾</a>
+                        <a data-v-39f7f629="" href="${pageContext.request.contextPath}/view/short" target="_self" class="">短租自驾</a>
                     </li>
                     <li data-v-39f7f629="">
                         <a data-v-39f7f629="" href="${pageContext.request.contextPath}/view/index" target="_self" class="colorRed">

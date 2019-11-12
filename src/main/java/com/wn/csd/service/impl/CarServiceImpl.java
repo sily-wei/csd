@@ -5,7 +5,6 @@ import com.wn.csd.mapper.CarMapper;
 import com.wn.csd.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import java.util.List;
 
