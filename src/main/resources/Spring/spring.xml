@@ -50,6 +50,8 @@
         <property name="basePackage" value="com.wn.**.mapper"/>
     </bean>
 
+    <tx:annotation-driven/>
+
     <!--****************springMVC的相关配置*****************-->
     <!--mvc的注解驱动-->
     <mvc:annotation-driven>

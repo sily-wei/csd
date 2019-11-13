@@ -5,6 +5,7 @@ import com.wn.csd.mapper.CityMapper;
 import com.wn.csd.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class CityServiceImpl implements CityService {
      * @param pid 城市id
      * @return 返回所有pid对应的城市
      */
+    @Transactional
     public List<City> selectCity(Integer pid) {
         return cityMapper.selectCity(pid);
     }
@@ -30,6 +32,7 @@ public class CityServiceImpl implements CityService {
     /**
      * 通过获取getid来查询对应的城市名字
      */
+    @Transactional
     public City selectCityById(String getId) {
         return cityMapper.selectCityById(getId);
     }

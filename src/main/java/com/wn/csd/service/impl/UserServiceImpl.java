@@ -5,6 +5,7 @@ import com.wn.csd.mapper.UserMapper;
 import com.wn.csd.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author weining
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
      * @param tel 电话号
      * @return 返回User对象
      */
+    @Transactional
     public User findUserByTel(String tel) {
         System.out.println(tel);
         return userMapper.findUserByTel(tel);
@@ -31,6 +33,7 @@ public class UserServiceImpl implements UserService {
      * 注册用户
      * @param user 用户的实体类
      */
+    @Transactional
     public void register(User user) {
         userMapper.register(user);
     }
@@ -39,6 +42,7 @@ public class UserServiceImpl implements UserService {
      * 修改用户
      * @param user 用户的实体类
      */
+    @Transactional
     public void updateUser(User user) {
         userMapper.updateUser(user);
     }

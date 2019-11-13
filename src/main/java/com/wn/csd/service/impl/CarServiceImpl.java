@@ -5,6 +5,7 @@ import com.wn.csd.mapper.CarMapper;
 import com.wn.csd.service.CarService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,6 +24,7 @@ public class CarServiceImpl implements CarService {
      * @param getId 城市的id
      * @return 返回所有的车
      */
+    @Transactional(readOnly = true)
     public List<Car> selectCarByCId(Integer getId) {
         return carMapper.selectCarByCId(getId);
     }
@@ -32,6 +34,7 @@ public class CarServiceImpl implements CarService {
      * @param getId 城市的id
      * @return 返回所有的车
      */
+    @Transactional(readOnly = true)
     public List<Car> selectCarByNumber(Integer getId) {
         return carMapper.selectCarByNumber(getId);
     }
@@ -41,6 +44,7 @@ public class CarServiceImpl implements CarService {
      * @param cid 汽车的id
      * @return 返回车的所有数据
      */
+    @Transactional(readOnly = true)
     public Car selectCarById(Integer cid) {
         return carMapper.selectCarById(cid);
     }
