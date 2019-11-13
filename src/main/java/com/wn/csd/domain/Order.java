@@ -5,6 +5,7 @@ import lombok.Data;
 /**
  * @author weining
  * @date 2019/11/11 16:46
+ * 订单实体类
  */
 @Data
 public class Order {

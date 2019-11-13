@@ -18,10 +18,18 @@ public class CityServiceImpl implements CityService {
     @Autowired
     private CityMapper cityMapper;
 
+    /**
+     * 通过pid获取所有的城市名
+     * @param pid 城市id
+     * @return 返回所有pid对应的城市
+     */
     public List<City> selectCity(Integer pid) {
         return cityMapper.selectCity(pid);
     }
 
+    /**
+     * 通过获取getid来查询对应的城市名字
+     */
     public City selectCityById(String getId) {
         return cityMapper.selectCityById(getId);
     }

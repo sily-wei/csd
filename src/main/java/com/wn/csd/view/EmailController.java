@@ -1,6 +1,5 @@
 package com.wn.csd.view;
 
-import com.wn.csd.domain.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.context.ApplicationContext;
@@ -11,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Random;
 
@@ -24,7 +22,6 @@ import java.util.Random;
 public class EmailController {
 
     private static final Logger logger = LogManager.getLogger(EmailController.class);
-
     private static ApplicationContext applicationContext;
     private static JavaMailSender javaMailSender;
     private static String mailSender ;
@@ -40,10 +37,14 @@ public class EmailController {
 
     }
 
+    /**
+     * 发送邮件
+     * @param email 邮箱的id
+     * @param session 将随机数放到session中，在注册页面通过session可以获取随机数，进行验证
+     */
     @RequestMapping("/email")
     @ResponseBody
     public void registerUp(String email, HttpSession session){
-
         /**
          * 设置随机数
          */

@@ -5,6 +5,7 @@ import lombok.Data;
 /**
  * @author weining
  * @date 2019/11/8 19:16
+ * Car的实体类
  */
 @Data
 public class Car {

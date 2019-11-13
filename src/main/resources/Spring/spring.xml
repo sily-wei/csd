@@ -64,7 +64,6 @@
                     </list>
                 </property>
             </bean>
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" ></bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
@@ -75,4 +74,15 @@
     <mvc:view-resolvers>
         <mvc:jsp prefix="/WEB-INF" suffix=".jsp"/>
     </mvc:view-resolvers>
+
+    <!--全局拦截器-->
+    <mvc:interceptors>
+        <!-- 多个拦截器 ， 顺序执行-->
+        <!-- 登录认证拦截器  -->
+        <mvc:interceptor>
+            <!--/** 表示拦截所有url包括子url路径 -->
+            <mvc:mapping path="/**"/>
+            <bean class="com.wn.csd.interceptor.MyInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>

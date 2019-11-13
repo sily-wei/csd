@@ -31,7 +31,7 @@
         <div data-v-0a99943a="" class="layout">
             <div data-v-0a99943a="" class="loginCom clear">
                 <div data-v-0a99943a="" class="loginImg left">
-                    <img data-v-0a99943a="" src="https://www.chesudi.com/static/img/login.674ee3d.jpg">
+                    <img data-v-0a99943a="" src="${pageContext.request.contextPath}/resources/images/login.jpg">
                 </div>
                 <div data-v-0a99943a="" class="loginType right">
                     <div class="denglu">
@@ -142,7 +142,7 @@
                     }
                 },
                 error:function(){
-                    layer.alert("ajax错误");
+                    layer.alert("账号或者密码错误");
                 }
             });
             return false;

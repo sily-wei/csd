@@ -3,6 +3,7 @@ package com.wn.csd.domain;
 /**
  * @author weining
  * @date 2019/11/12 10:46
+ * 订单实体类
  */
 public class UserOrder {
     private int id;

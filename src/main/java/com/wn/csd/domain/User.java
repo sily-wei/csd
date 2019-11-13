@@ -1,15 +1,10 @@
 package com.wn.csd.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 /**
  * @author weining
  * @date 2019/11/8 19:12
+ * 用户实体类
  */
-/*@Getter
-@Setter*/
 public class User {
     private Integer id;
     private String tel;

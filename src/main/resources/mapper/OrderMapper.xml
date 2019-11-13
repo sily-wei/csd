@@ -39,8 +39,10 @@
             so.getid = c1.id and
             so.backid = c2.id and
             so.uid = #{uid}
+            order by so.id desc
             limit
             <include refid="pageSql"></include>
+
     </select>
 
     <select id="selectTotal" resultType="integer">
@@ -51,4 +53,5 @@
         where
             so.uid = #{uid}
     </select>
+
 </mapper>

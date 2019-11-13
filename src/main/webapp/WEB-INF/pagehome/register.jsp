@@ -157,7 +157,7 @@
                                                   target="_blank"><img data-v-3aaf9db2=""
                                                                        src="https://www.chesudi.com/static/img/gongan.d0289dc.png"
                                                                        class="img1"></a> <img data-v-3aaf9db2=""
-                                                                                              src="https://www.chesudi.com/static/img/cnnic.4528ccc.png"
+                                                                                              src="${pageContext.request.contextPath}/resources/images/login.jpg"
                                                                                               class="img2"></div>
         </div>
     </div>
@@ -195,18 +195,16 @@
                 data: $("form").serialize(),
                 dataType: 'json',
                 success: function (res) {
-                    if (res == "1") {
+                    if (res.code == 1) {
                         alert("注册成功！");
                         window.location.href = ("${pageContext.request.contextPath}/view/login");
-                    } else if (res == "2") {
+                    } else if (res.code == 2) {
                         alert("验证码错误，请重新输入");
-                    }else if (res == "3")
-                    {
+                    }else if (res.code == 3) {
                         alert("用户名已被占用")
                     }
                 },
                 error: function () {
-                    alert(data);
                     alert("ajax错误");
                 }
             });
@@ -215,16 +213,6 @@
         });
     });
 
-
-    function validateTel() {
-        var tel = $("#tel").val();
-        $.get("${pageContext.request.contextPath}/user/validateTel?tel=" + tel, function (data) {
-            alert(tel);
-            if (data == "0") {
-                alert("该用户名已经被占用");
-            }
-        });
-    }
 
     $(function () {
         $('#send').click(
@@ -237,11 +225,8 @@
                     data: data,
                     dataType: "json",
                     success: function () {
-                        alert(data.email);
-                        alert(123)
                     },
                     error: function () {
-                        alert(456)
                     }
                 });
             }

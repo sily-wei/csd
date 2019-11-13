@@ -27,10 +27,18 @@ public class UserServiceImpl implements UserService {
         return userMapper.findUserByTel(tel);
     }
 
+    /**
+     * 注册用户
+     * @param user 用户的实体类
+     */
     public void register(User user) {
         userMapper.register(user);
     }
 
+    /**
+     * 修改用户
+     * @param user 用户的实体类
+     */
     public void updateUser(User user) {
         userMapper.updateUser(user);
     }

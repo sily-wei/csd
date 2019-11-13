@@ -1,10 +1,10 @@
 package com.wn.csd.domain;
 
-import lombok.Data;
 
 /**
  * @author weining
  * @date 2019/11/12 9:34
+ * 分页实体类
  */
 public class OrderPage {
     private Integer startIndex;

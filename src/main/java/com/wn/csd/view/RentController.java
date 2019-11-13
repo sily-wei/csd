@@ -21,6 +21,11 @@ public class RentController {
     @Autowired
     private CityService cityService;
 
+    /**
+     * 通过pid 获取城市名
+     * @param pid 城市的id
+     * @return 将城市放到json数据中 返回给前端页面
+     */
     @RequestMapping("/select")
     @ResponseBody
     public String findByCityName(Integer pid){

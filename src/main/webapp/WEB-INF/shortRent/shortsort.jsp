@@ -274,11 +274,8 @@
 
 
 <script type="text/javascript">
-
     function selectCar(cid) {
-
-        window.location.href="../order/ordersubmit.html?cid="+cid;
-
+        window.location.href="${pageContext.request.contextPath}/view/order" + getid + "&cid=" + cid;
     }
 
 </script>

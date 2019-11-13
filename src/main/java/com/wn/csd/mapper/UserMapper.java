@@ -17,7 +17,15 @@ public interface UserMapper {
      */
     User findUserByTel(String tel);
 
+    /**
+     * 注册用户
+     * @param user 用户的实体类
+     */
     void register(User user);
 
+    /**
+     * 修改用户
+     * @param user 用户的实体类
+     */
     void updateUser(User user);
 }
